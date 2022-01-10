@@ -1,8 +1,10 @@
+package Utility;
+
 import java.sql.*;
 import java.util.*;
 
 
-class DatabaseUtilities {
+public class DatabaseUtilities {
 
     private static Connection connection = null;
     public static String host;
