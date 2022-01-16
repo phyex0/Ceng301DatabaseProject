@@ -30,6 +30,18 @@ public class MainMenuView implements ViewInterface {
             System.out.println("13. Add a Task");
             System.out.println("14. Update a Task");
             System.out.println("15. Delete a Task");
+            //
+            System.out.println("16. Show all Assigned Tasks");
+            System.out.println("17. Show Assigned Task");
+            System.out.println("18. Add a Assigned Task");
+            System.out.println("19. Update a Assigned Task");
+            System.out.println("20. Delete a Assigned Task");
+            //
+            System.out.println("11. Show all Comments");
+            System.out.println("12. Show Comment");
+            System.out.println("13. Add a Comment");
+            System.out.println("14. Update a Comment");
+            System.out.println("15. Delete a Comment");
 
             System.out.println("6. Quit");
             System.out.println();

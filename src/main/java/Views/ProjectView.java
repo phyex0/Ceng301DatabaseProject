@@ -1,6 +1,7 @@
 package Views;
 
 import Entity.Person;
+import Entity.Project;
 import Model.ModelData;
 
 import java.sql.ResultSet;
@@ -35,20 +36,14 @@ public class ProjectView implements ViewInterface {
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
-                String first_name = resultSet.getString("first_name");
-                String last_name = resultSet.getString("last_name");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String user_profile = resultSet.getString("user_profile");
+                String name = resultSet.getString("name");
+                int user_id = resultSet.getInt("user_id");
 
 
                 // Display values
                 System.out.print(id + "\t");
-                System.out.print(first_name + "\t");
-                System.out.print(last_name + "\t");
-                System.out.print(email + "\t");
-                System.out.print(password + "\t");
-                System.out.print(user_profile);
+                System.out.print(name + "\t");
+                System.out.print(user_id + "\t");
                 System.out.println();
             }
             resultSet.close();
@@ -78,19 +73,13 @@ public class ProjectView implements ViewInterface {
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
         Integer id = getInteger("id", true);
-        String first_name = getString("first_name : ", true);
-        String last_name = getString("last_name", true);
-        String email = getString("email", true);
-        String password = getString("password", true);
-        String user_profile = getString("user_profile", true);
+        String name = getString("name : ", true);
+        Integer user_id = getInteger("id", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
-        if (first_name != null) whereParameters.put("first_name", first_name);
-        if (last_name != null) whereParameters.put("last_name", last_name);
-        if (email != null) whereParameters.put("email", email);
-        if (password != null) whereParameters.put("password", password);
-        if (user_profile != null) whereParameters.put("user_profile", user_profile);
+        if (name != null) whereParameters.put("name", name);
+        if (user_id != null) whereParameters.put("user_id", user_id);
 
         return whereParameters;
     }
@@ -99,35 +88,34 @@ public class ProjectView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Person", "select", parameters);
+        return new ViewData("Project", "select", parameters);
     }
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "first_name, last_name, email, password, user_profile");
+        parameters.put("fieldNames", "id, name, user_id");
 
         List<Object> rows = new ArrayList<>();
 
         int id;
-        String first_name, last_name, email, password, user_profile;
+        String name;
+        Integer user_id;
         do
         {
             System.out.println("Fields to insert:");
             id = getInteger("id", false);
-            first_name = getString("first_name : ", false);
-            last_name = getString("last_name : ", false);
-            email = getString("email : ", false);
-            password = getString("password : ", false);
-            user_profile = getString("user_profile : ", false);
+            name = getString("name : ", false);
+            user_id = getInteger("user_id : ", false);
+
 
             System.out.println();
 
-            if (first_name != null && last_name != null && email !=null && password != null && user_profile != null) {
-                rows.add(new Person(id, first_name, last_name, email, password, user_profile));
+            if (name != null && user_id != null) {
+                rows.add(new Project(id, name, user_id));
             }
         }
-        while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
+        while (name != null && user_id != null );
 
         parameters.put("rows", rows);
 
@@ -140,39 +128,33 @@ public class ProjectView implements ViewInterface {
 
 
         int id = getInteger("id", false);
-        String first_name = getString("first_name : ", false);
-        String last_name = getString("last_name : ", false);
-        String email = getString("email : ", false);
-        String password = getString("password : ", false);
-        String user_profile = getString("user_profile : ", false);
+        String name = getString("name : ", false);
+        Integer user_id = getInteger("user_id : ", false);
+
 
 
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (first_name != null) updateParameters.put("first_name", first_name);
-        if (last_name != null) updateParameters.put("last_name", last_name);
-        if (email != null) updateParameters.put("email", email);
-        if (password != null) updateParameters.put("password", password);
-        if (user_profile != null) updateParameters.put("user_profile", user_profile);
-
+        if (name != null) updateParameters.put("name", name);
+        if (user_id != null) updateParameters.put("user_id", user_id);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Person", "update", parameters);
+        return new ViewData("Project", "update", parameters);
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Person", "delete", parameters);
+        return new ViewData("Project", "delete", parameters);
     }
 
     @Override
     public String toString() {
-        return "Person View";
+        return "Project View";
     }
 }
