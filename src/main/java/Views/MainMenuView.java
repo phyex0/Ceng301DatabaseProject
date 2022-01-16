@@ -37,22 +37,29 @@ public class MainMenuView implements ViewInterface {
             System.out.println("19. Update a Assigned Task");
             System.out.println("20. Delete a Assigned Task");
             //
-            System.out.println("11. Show all Comments");
-            System.out.println("12. Show Comment");
-            System.out.println("13. Add a Comment");
-            System.out.println("14. Update a Comment");
-            System.out.println("15. Delete a Comment");
+            System.out.println("21 Show all Comments");
+            System.out.println("22. Show Comment");
+            System.out.println("23. Add a Comment");
+            System.out.println("24. Update a Comment");
+            System.out.println("25. Delete a Comment");
 
-            System.out.println("6. Quit");
+            System.out.println("26. Quit");
             System.out.println();
 
             choice = getInteger("Enter your choice : ", false);
         }
-        while (choice == null || choice < 1 || choice > 6);
+        while (choice == null || choice < 1 || choice > 26);
 
 
         Map<String, Object> userInput = new HashMap<>();
         userInput.put("mainMenuChoice", choice);
+
+        int temp = choice;
+        if (choice == 26)
+            choice = -1;
+        else
+            choice %= 5;
+
 
         switch (choice.intValue()) {
             case 1:
@@ -67,14 +74,14 @@ public class MainMenuView implements ViewInterface {
             case 4:
                 operationName = "update.gui";
                 break;
-            case 5:
+            case 0:
                 operationName = "delete.gui";
                 break;
             default:
                 return new ViewData(null, null);
         }
 
-        return new ViewData("Person", operationName, new HashMap<>());
+        return new ViewData(getFunctionName(temp), operationName, new HashMap<>());
     }
 
     @Override
@@ -105,5 +112,23 @@ public class MainMenuView implements ViewInterface {
     @Override
     public String getString(String prompt, boolean allowNulls) throws ParseException {
         return ViewInterface.super.getString(prompt, allowNulls);
+    }
+
+    public String getFunctionName(Integer choice) {
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1, "Person");
+        map.put(2, "Project");
+        map.put(3, "Task");
+        map.put(4, "AssignedTask");
+        map.put(5, "Comment");
+
+        int result;
+        if (choice % 5 == 0)
+            result = choice / 5;
+        else
+            result = Math.round((choice / 5) + 1);
+
+        return map.get(result);
+
     }
 }
