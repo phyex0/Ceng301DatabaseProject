@@ -1,6 +1,6 @@
 package Entity;
 
-public class User {
+public class Person {
 
     int id;
     String first_name;
@@ -9,10 +9,10 @@ public class User {
     String password;
     String user_profile;
 
-    public User() {
+    public Person() {
     }
 
-    public User(int id, String first_name, String last_name, String email, String password, String user_profile) {
+    public Person(int id, String first_name, String last_name, String email, String password, String user_profile) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -88,7 +88,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Person{" +
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
