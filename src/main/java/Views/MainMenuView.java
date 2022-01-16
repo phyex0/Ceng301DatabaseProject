@@ -49,7 +49,7 @@ public class MainMenuView implements ViewInterface {
                 return new ViewData(null, null);
         }
 
-        return new ViewData("User", operationName, new HashMap<>());
+        return new ViewData("Person", operationName, new HashMap<>());
     }
 
     @Override

@@ -1,7 +1,6 @@
 package Model;
 
 import Utility.DatabaseUtilities;
-import Views.ViewData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class UserModel implements ModelInterface {
+public class PersonModel implements ModelInterface {
 
     @Override
     public ResultSet select(Map<String, Object> whereParameters) throws Exception {
         // construct SQL statement
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT ");
-        sql.append("	id, first_name, last_name, email, user_profile ");
-        sql.append(" FROM dbo.UserProfile ");
-        //sql.append("SELECT * FROM dbo.User");
+        sql.append("	*");
+        sql.append(" FROM dbo.Person ");
+
 
         List<Map.Entry<String, Object>> whereParameterList = DatabaseUtilities.createWhereParameterList(whereParameters);
         sql.append(DatabaseUtilities.prepareWhereStatement(whereParameterList));
@@ -49,7 +48,7 @@ public class UserModel implements ModelInterface {
     @Override
     public int delete(Map<String, Object> whereParameters) throws Exception {
         StringBuilder sql = new StringBuilder();
-        sql.append(" DELETE FROM dbo.User ");
+        sql.append(" DELETE FROM dbo.Person ");
         return 0;
     }
 

@@ -1,16 +1,12 @@
 import Controllers.Controller;
 import Model.ModelData;
 import Model.NopModel;
-import Model.UserModel;
+import Model.PersonModel;
 import Utility.DatabaseUtilities;
 import Views.MainMenuView;
-import Views.UserView;
+import Views.PersonView;
 import Views.ViewData;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +19,7 @@ public class Main {
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
-        router.put("User", new Controller(new UserView(), new UserModel()));
+        router.put("Person", new Controller(new PersonView(), new PersonModel()));
 
         ViewData viewData = new ViewData("MainMenu", "");
         do {

@@ -1,6 +1,6 @@
 package Views;
 
-import Entity.User;
+import Entity.Person;
 import Model.ModelData;
 
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserView implements ViewInterface {
+public class PersonView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
@@ -77,12 +77,12 @@ public class UserView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
-        Integer id = getInteger("id", false);
-        String first_name = getString("first_name : ", false);
-        String last_name = getString("last_name", false);
-        String email = getString("email", false);
-        String password = getString("password", false);
-        String user_profile = getString("user_profile", false);
+        Integer id = getInteger("id", true);
+        String first_name = getString("first_name : ", true);
+        String last_name = getString("last_name", true);
+        String email = getString("email", true);
+        String password = getString("password", true);
+        String user_profile = getString("user_profile", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -99,7 +99,7 @@ public class UserView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Department", "select", parameters);
+        return new ViewData("Person", "select", parameters);
     }
 
 
@@ -124,14 +124,14 @@ public class UserView implements ViewInterface {
             System.out.println();
 
             if (first_name != null && last_name != null && email !=null && password != null && user_profile != null) {
-                rows.add(new User(id, first_name, last_name, email, password, user_profile));
+                rows.add(new Person(id, first_name, last_name, email, password, user_profile));
             }
         }
         while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
 
         parameters.put("rows", rows);
 
-        return new ViewData("User", "insert", parameters);
+        return new ViewData("Person", "insert", parameters);
     }
 
 
@@ -161,18 +161,18 @@ public class UserView implements ViewInterface {
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Department", "update", parameters);
+        return new ViewData("Person", "update", parameters);
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("User", "delete", parameters);
+        return new ViewData("Person", "delete", parameters);
     }
 
     @Override
     public String toString() {
-        return "Department View";
+        return "Person View";
     }
 }
