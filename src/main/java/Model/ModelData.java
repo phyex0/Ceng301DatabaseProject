@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 
 public class ModelData {
     final String modelName;
-    final ResultSet resultSet;
-    final int recordCount;
+    public final ResultSet resultSet;
+    public final int recordCount;
 
     ModelData() {
         this.modelName = null;

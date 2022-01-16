@@ -47,7 +47,8 @@ public class Main {
     }
 
     public static void connectToDatabase() {
-        DatabaseUtilities.host = "MONSTER-PC:1433";
+        DatabaseUtilities.host = "DESKTOP-HFDS938";
+        // DatabaseUtilities.host = "MONSTER-PC:1433";
         DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";
