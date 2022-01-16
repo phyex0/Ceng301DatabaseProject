@@ -136,8 +136,6 @@ public class PersonView implements ViewInterface {
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-
-        int id = getInteger("id", false);
         String first_name = getString("first_name : ", false);
         String last_name = getString("last_name : ", false);
         String email = getString("email : ", false);
