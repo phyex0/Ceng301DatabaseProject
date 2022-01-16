@@ -1,16 +1,19 @@
 package Views;
 
+import Entity.AssignedTask;
 import Entity.Person;
 import Entity.Project;
+import Entity.Task;
 import Model.ModelData;
 
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjectView implements ViewInterface {
+public class AssignedTaskView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
@@ -36,14 +39,19 @@ public class ProjectView implements ViewInterface {
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int user_id = resultSet.getInt("user_id");
+                int source_user = resultSet.getInt("source_user");
+                int destination_user = resultSet.getInt("destination_user");
+                int task_id = resultSet.getInt("task_id");
+                Date date = resultSet.getDate("assigned_date");
 
 
                 // Display values
                 System.out.print(id + "\t");
-                System.out.print(name + "\t");
-                System.out.print(user_id + "\t");
+                System.out.print(source_user + "\t");
+                System.out.print(destination_user + "\t");
+                System.out.print(task_id + "\t");
+                System.out.print(date + "\t");
+
                 System.out.println();
             }
             resultSet.close();
@@ -72,14 +80,20 @@ public class ProjectView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
-        Integer id = getInteger("id", true);
-        String name = getString("name : ", true);
-        Integer user_id = getInteger("id", true);
+
+
+        Integer id = getInteger("id : ", true);
+        Integer source_user = getInteger("source_user", true);
+        Integer destination_user = getInteger("destination_user", true);
+        Integer task_id = getInteger("task_id : ", true);
+        Date date = getDate("date : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
-        if (name != null) whereParameters.put("name", name);
-        if (user_id != null) whereParameters.put("user_id", user_id);
+        if (source_user != null) whereParameters.put("source_user", source_user);
+        if (destination_user != null) whereParameters.put("destination_user", destination_user);
+        if (task_id != null) whereParameters.put("task_id", task_id);
+        if (date != null) whereParameters.put("date", date);
 
         return whereParameters;
     }
@@ -88,73 +102,76 @@ public class ProjectView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Project", "select", parameters);
+        return new ViewData("AssignedTask", "select", parameters);
     }
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "id, name, user_id");
+        parameters.put("fieldNames", "id, source_user, destination_user, task_id, assigned_date");
 
         List<Object> rows = new ArrayList<>();
 
+
         int id;
-        String name;
-        Integer user_id;
+        Integer source_user, destination_user, task_id;
+        Date assigned_date;
         do
         {
             System.out.println("Fields to insert:");
             id = getInteger("id", false);
-            name = getString("name : ", false);
-            user_id = getInteger("user_id : ", false);
-
+            source_user = getInteger("source_user : ", false);
+            destination_user = getInteger("destination_user : ", false);
+            task_id = getInteger("task_id : ", false);
+            assigned_date = getDate("assigned_date : ", false);
 
             System.out.println();
 
-            if (name != null && user_id != null) {
-                rows.add(new Project(id, name, user_id));
+            if (source_user != null && destination_user != null && task_id != null && assigned_date != null) {
+                rows.add(new AssignedTask(id, source_user, destination_user, task_id, assigned_date));
             }
         }
-        while (name != null && user_id != null );
+        while (source_user != null && destination_user != null && task_id != null && assigned_date != null);
 
         parameters.put("rows", rows);
 
-        return new ViewData("Project", "insert", parameters);
+        return new ViewData("AssignedTask", "insert", parameters);
     }
 
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-
         int id = getInteger("id", false);
-        String name = getString("name : ", false);
-        Integer user_id = getInteger("user_id : ", false);
-
-
-
+        Integer source_user = getInteger("source_user : ", false);
+        Integer destination_user = getInteger("destination_user : ", false);
+        Integer task_id = getInteger("task_id : ", false);
+        Date assigned_date = getDate("assigned_date", false);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) updateParameters.put("name", name);
-        if (user_id != null) updateParameters.put("user_id", user_id);
+
+        if (source_user != null) updateParameters.put("source_user", source_user);
+        if (destination_user != null) updateParameters.put("destination_user", destination_user);
+        if (task_id != null) updateParameters.put("task_id", task_id);
+        if (assigned_date != null) updateParameters.put("assigned_date", assigned_date);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Project", "update", parameters);
+        return new ViewData("AssignedTask", "update", parameters);
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Project", "delete", parameters);
+        return new ViewData("AssignedTask", "delete", parameters);
     }
 
     @Override
     public String toString() {
-        return "Project View";
+        return "AssignedTask View";
     }
 }
