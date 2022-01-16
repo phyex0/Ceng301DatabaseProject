@@ -126,23 +126,35 @@ public class UserView implements ViewInterface {
                 rows.add(new User(id, first_name, last_name, email, password, user_profile));
             }
         }
-        while (name != null && groupName != null);
+        while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
 
         parameters.put("rows", rows);
 
-        return new ViewData("Department", "insert", parameters);
+        return new ViewData("User", "insert", parameters);
     }
 
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+
+
+        int id = getInteger("id", false);
+        String first_name = getString("first_name : ", false);
+        String last_name = getString("last_name : ", false);
+        String email = getString("email : ", false);
+        String password = getString("password : ", false);
+        String user_profile = getString("user_profile : ", false);
+
+
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) updateParameters.put("Name", name);
-        if (groupName != null) updateParameters.put("GroupName", groupName);
+        if (first_name != null) updateParameters.put("first_name", first_name);
+        if (last_name != null) updateParameters.put("last_name", last_name);
+        if (email != null) updateParameters.put("email", email);
+        if (password != null) updateParameters.put("password", password);
+        if (user_profile != null) updateParameters.put("user_profile", user_profile);
+
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
@@ -155,7 +167,7 @@ public class UserView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Department", "delete", parameters);
+        return new ViewData("User", "delete", parameters);
     }
 
     @Override
