@@ -1,6 +1,7 @@
-package Models;
+package Model;
 
 import Utility.DatabaseUtilities;
+import Views.ViewData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,8 +50,4 @@ public class UserModel  implements  ModelInterface{
         return 0;
     }
 
-    @Override
-    public ModelData execute(ViewData viewData) throws Exception {
-        return ModelInterface.super.execute(viewData);
-    }
 }

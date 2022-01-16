@@ -1,4 +1,4 @@
-package Repositories;
+package Entity;
 
 import java.sql.Date;
 

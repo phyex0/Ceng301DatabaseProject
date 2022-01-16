@@ -1,29 +1,47 @@
+import Controllers.Controller;
+import Model.ModelData;
+import Model.NopModel;
 import Utility.DatabaseUtilities;
+import Views.MainMenuView;
+import Views.ViewData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         connectToDatabase();
-        //Test Code
-        StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT ");
-        sql.append("	DepartmentID, Name, GroupName, ModifiedDate ");
-        sql.append(" FROM HumanResources.Department ");
 
-        Connection connection = DatabaseUtilities.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
-        ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            String name = resultSet.getString("Name");
-            System.out.println(name);
+        // Model View Controller (MVC)
+        // Router knows all the controllers
+        Map<String, Controller> router = new HashMap<>();
+        router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
+        //router.put("Department", new Controller(new DepartmentView(), new DepartmentModel()));
+
+        ViewData viewData = new ViewData("MainMenu", "");
+        do {
+            // Model, View, and Controller
+            Controller controller = router.get(viewData.functionName);
+            ModelData modelData = controller.executeModel(viewData);
+            viewData = controller.getView(modelData, viewData.functionName, viewData.operationName);
+
+            System.out.println();
+            System.out.println("-------------------------------------------------");
+            System.out.println();
         }
+        while (viewData.functionName != null);
 
-        System.out.println("Ekmek");
+        System.out.println();
+        System.out.println();
+        System.out.println("Program is ended...");
+
+
+        // Disconnect from database
         disconnectFromDatabase();
 
     }

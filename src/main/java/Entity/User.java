@@ -1,4 +1,4 @@
-package Repositories;
+package Entity;
 
 public class User {
 

@@ -1,11 +1,13 @@
-package Models;
+package Model;
+
+import Views.ViewData;
 
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
 
-interface ModelInterface {
+public interface ModelInterface {
 
 	abstract ResultSet select(Map<String, Object> whereParameters) throws Exception;
 	
