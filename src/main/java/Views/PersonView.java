@@ -109,22 +109,20 @@ public class PersonView implements ViewInterface {
 
         List<Object> rows = new ArrayList<>();
 
-        int id;
         String first_name, last_name, email, password, user_profile;
         do
         {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            first_name = getString("first_name : ", false);
-            last_name = getString("last_name : ", false);
-            email = getString("email : ", false);
-            password = getString("password : ", false);
-            user_profile = getString("user_profile : ", false);
+            first_name = getString("first_name : ", true);
+            last_name = getString("last_name : ", true);
+            email = getString("email : ", true);
+            password = getString("password : ", true);
+            user_profile = getString("user_profile : ", true);
 
             System.out.println();
 
             if (first_name != null && last_name != null && email !=null && password != null && user_profile != null) {
-                rows.add(new Person(id, first_name, last_name, email, password, user_profile));
+                rows.add(new Person(first_name, last_name, email, password, user_profile));
             }
         }
         while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
