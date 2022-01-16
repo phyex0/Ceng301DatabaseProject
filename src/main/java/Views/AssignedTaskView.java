@@ -18,15 +18,23 @@ public class AssignedTaskView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        switch(operationName) {
-            case "select": return selectOperation(modelData);
-            case "insert": return insertOperation(modelData);
-            case "update": return updateOperation(modelData);
-            case "delete": return deleteOperation(modelData);
-            case "select.gui": return selectGUI(modelData);
-            case "insert.gui": return insertGUI(modelData);
-            case "update.gui": return updateGUI(modelData);
-            case "delete.gui": return deleteGUI(modelData);
+        switch (operationName) {
+            case "select":
+                return selectOperation(modelData);
+            case "insert":
+                return insertOperation(modelData);
+            case "update":
+                return updateOperation(modelData);
+            case "delete":
+                return deleteOperation(modelData);
+            case "select.gui":
+                return selectGUI(modelData);
+            case "insert.gui":
+                return insertGUI(modelData);
+            case "update.gui":
+                return updateGUI(modelData);
+            case "delete.gui":
+                return deleteGUI(modelData);
         }
 
         return new ViewData("MainMenu", "");
@@ -113,17 +121,16 @@ public class AssignedTaskView implements ViewInterface {
         List<Object> rows = new ArrayList<>();
 
 
-        int id;
+        Integer id;
         Integer source_user, destination_user, task_id;
         Date assigned_date;
-        do
-        {
+        do {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            source_user = getInteger("source_user : ", false);
-            destination_user = getInteger("destination_user : ", false);
-            task_id = getInteger("task_id : ", false);
-            assigned_date = getDate("assigned_date : ", false);
+            id = getInteger("id", true);
+            source_user = getInteger("source_user : ", true);
+            destination_user = getInteger("destination_user : ", true);
+            task_id = getInteger("task_id : ", true);
+            assigned_date = getDate("assigned_date : ", true);
 
             System.out.println();
 

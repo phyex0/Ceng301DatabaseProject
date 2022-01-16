@@ -14,15 +14,23 @@ public class PersonView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        switch(operationName) {
-            case "select": return selectOperation(modelData);
-            case "insert": return insertOperation(modelData);
-            case "update": return updateOperation(modelData);
-            case "delete": return deleteOperation(modelData);
-            case "select.gui": return selectGUI(modelData);
-            case "insert.gui": return insertGUI(modelData);
-            case "update.gui": return updateGUI(modelData);
-            case "delete.gui": return deleteGUI(modelData);
+        switch (operationName) {
+            case "select":
+                return selectOperation(modelData);
+            case "insert":
+                return insertOperation(modelData);
+            case "update":
+                return updateOperation(modelData);
+            case "delete":
+                return deleteOperation(modelData);
+            case "select.gui":
+                return selectGUI(modelData);
+            case "insert.gui":
+                return insertGUI(modelData);
+            case "update.gui":
+                return updateGUI(modelData);
+            case "delete.gui":
+                return deleteGUI(modelData);
         }
 
         return new ViewData("MainMenu", "");
@@ -105,14 +113,15 @@ public class PersonView implements ViewInterface {
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "first_name, last_name, email, password, user_profile");
+        parameters.put("fieldNames", "id, first_name, last_name, email, password, user_profile");
 
         List<Object> rows = new ArrayList<>();
 
+        Integer id;
         String first_name, last_name, email, password, user_profile;
-        do
-        {
+        do {
             System.out.println("Fields to insert:");
+            id = getInteger("id", true);
             first_name = getString("first_name : ", true);
             last_name = getString("last_name : ", true);
             email = getString("email : ", true);
@@ -121,11 +130,12 @@ public class PersonView implements ViewInterface {
 
             System.out.println();
 
-            if (first_name != null && last_name != null && email !=null && password != null && user_profile != null) {
-                rows.add(new Person(first_name, last_name, email, password, user_profile));
+            if (id != null && first_name != null && last_name != null && email != null && password != null && user_profile != null) {
+                System.out.println("test");
+                rows.add(new Person(id, first_name, last_name, email, password, user_profile));
             }
         }
-        while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
+        while (id != null && first_name != null && last_name != null && email != null && password != null && user_profile != null);
 
         parameters.put("rows", rows);
 
@@ -136,11 +146,13 @@ public class PersonView implements ViewInterface {
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-        String first_name = getString("first_name : ", false);
-        String last_name = getString("last_name : ", false);
-        String email = getString("email : ", false);
-        String password = getString("password : ", false);
-        String user_profile = getString("user_profile : ", false);
+
+        int id = getInteger("id", true);
+        String first_name = getString("first_name : ", true);
+        String last_name = getString("last_name : ", true);
+        String email = getString("email : ", true);
+        String password = getString("password : ", true);
+        String user_profile = getString("user_profile : ", true);
 
 
         System.out.println();

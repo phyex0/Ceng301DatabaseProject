@@ -15,15 +15,23 @@ public class ProjectView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        switch(operationName) {
-            case "select": return selectOperation(modelData);
-            case "insert": return insertOperation(modelData);
-            case "update": return updateOperation(modelData);
-            case "delete": return deleteOperation(modelData);
-            case "select.gui": return selectGUI(modelData);
-            case "insert.gui": return insertGUI(modelData);
-            case "update.gui": return updateGUI(modelData);
-            case "delete.gui": return deleteGUI(modelData);
+        switch (operationName) {
+            case "select":
+                return selectOperation(modelData);
+            case "insert":
+                return insertOperation(modelData);
+            case "update":
+                return updateOperation(modelData);
+            case "delete":
+                return deleteOperation(modelData);
+            case "select.gui":
+                return selectGUI(modelData);
+            case "insert.gui":
+                return insertGUI(modelData);
+            case "update.gui":
+                return updateGUI(modelData);
+            case "delete.gui":
+                return deleteGUI(modelData);
         }
 
         return new ViewData("MainMenu", "");
@@ -98,15 +106,14 @@ public class ProjectView implements ViewInterface {
 
         List<Object> rows = new ArrayList<>();
 
-        int id;
+        Integer id;
         String name;
         Integer user_id;
-        do
-        {
+        do {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            name = getString("name : ", false);
-            user_id = getInteger("user_id : ", false);
+            id = getInteger("id", true);
+            name = getString("name : ", true);
+            user_id = getInteger("user_id : ", true);
 
 
             System.out.println();
@@ -115,7 +122,7 @@ public class ProjectView implements ViewInterface {
                 rows.add(new Project(id, name, user_id));
             }
         }
-        while (name != null && user_id != null );
+        while (name != null && user_id != null);
 
         parameters.put("rows", rows);
 
@@ -130,7 +137,6 @@ public class ProjectView implements ViewInterface {
         int id = getInteger("id", false);
         String name = getString("name : ", false);
         Integer user_id = getInteger("user_id : ", false);
-
 
 
         System.out.println();

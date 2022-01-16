@@ -79,6 +79,8 @@ public class Person {
                 return last_name;
             case "email":
                 return email;
+            case "password":
+                return password;
             case "user_profile":
                 return user_profile;
             default:

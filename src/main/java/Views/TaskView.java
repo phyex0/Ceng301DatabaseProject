@@ -17,15 +17,23 @@ public class TaskView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        switch(operationName) {
-            case "select": return selectOperation(modelData);
-            case "insert": return insertOperation(modelData);
-            case "update": return updateOperation(modelData);
-            case "delete": return deleteOperation(modelData);
-            case "select.gui": return selectGUI(modelData);
-            case "insert.gui": return insertGUI(modelData);
-            case "update.gui": return updateGUI(modelData);
-            case "delete.gui": return deleteGUI(modelData);
+        switch (operationName) {
+            case "select":
+                return selectOperation(modelData);
+            case "insert":
+                return insertOperation(modelData);
+            case "update":
+                return updateOperation(modelData);
+            case "delete":
+                return deleteOperation(modelData);
+            case "select.gui":
+                return selectGUI(modelData);
+            case "insert.gui":
+                return insertGUI(modelData);
+            case "update.gui":
+                return updateGUI(modelData);
+            case "delete.gui":
+                return deleteGUI(modelData);
         }
 
         return new ViewData("MainMenu", "");
@@ -127,22 +135,21 @@ public class TaskView implements ViewInterface {
         List<Object> rows = new ArrayList<>();
 
 
-        int id;
+        Integer id;
         String title, description, emergency;
         Date due_date;
         Integer section_status, project_id, user_id, root_task;
-        do
-        {
+        do {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            title = getString("title : ", false);
-            description = getString("description : ", false);
-            due_date = getDate("due_date : ", false);
-            emergency = getString("emergency : ", false);
-            section_status = getInteger("section_status : ", false);
-            project_id = getInteger("project_id : ", false);
-            user_id = getInteger("user_id : ", false);
-            root_task = getInteger("root_task", false);
+            id = getInteger("id", true);
+            title = getString("title : ", true);
+            description = getString("description : ", true);
+            due_date = getDate("due_date : ", true);
+            emergency = getString("emergency : ", true);
+            section_status = getInteger("section_status : ", true);
+            project_id = getInteger("project_id : ", true);
+            user_id = getInteger("user_id : ", true);
+            root_task = getInteger("root_task", true);
 
 
             System.out.println();
@@ -176,7 +183,6 @@ public class TaskView implements ViewInterface {
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-
 
 
         if (title != null) updateParameters.put("title", title);

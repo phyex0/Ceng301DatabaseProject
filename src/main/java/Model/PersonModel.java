@@ -67,7 +67,7 @@ public class PersonModel implements ModelInterface {
                 }
             }
         }
-        //System.out.println(sql.toString());
+        System.out.println(sql.toString());
 
 
         // execute constructed SQL statement
