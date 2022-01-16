@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class UserModel  implements  ModelInterface{
+public class UserModel implements ModelInterface {
 
     @Override
     public ResultSet select(Map<String, Object> whereParameters) throws Exception {
@@ -47,6 +47,8 @@ public class UserModel  implements  ModelInterface{
 
     @Override
     public int delete(Map<String, Object> whereParameters) throws Exception {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" DELETE FROM dbo.User ");
         return 0;
     }
 

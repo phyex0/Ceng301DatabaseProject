@@ -48,7 +48,7 @@ public class Main {
 
     public static void connectToDatabase() {
         DatabaseUtilities.host = "MONSTER-PC:1433";
-        DatabaseUtilities.databaseName = "AdventureWorks2019";
+        DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";
 

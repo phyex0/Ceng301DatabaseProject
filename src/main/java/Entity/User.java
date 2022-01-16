@@ -7,12 +7,12 @@ public class User {
     String last_name;
     String email;
     String password;
-    char user_profile;
+    String user_profile;
 
     public User() {
     }
 
-    public User(int id, String first_name, String last_name, String email, String password, char user_profile) {
+    public User(int id, String first_name, String last_name, String email, String password, String user_profile) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -61,11 +61,11 @@ public class User {
         this.password = password;
     }
 
-    public char getUser_profile() {
+    public String getUser_profile() {
         return user_profile;
     }
 
-    public void setUser_profile(char user_profile) {
+    public void setUser_profile(String user_profile) {
         this.user_profile = user_profile;
     }
 
