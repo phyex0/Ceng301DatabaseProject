@@ -49,6 +49,7 @@ public class UserView implements ViewInterface {
                 System.out.print(email + "\t");
                 System.out.print(password + "\t");
                 System.out.print(user_profile);
+                System.out.println();
             }
             resultSet.close();
         }

@@ -18,7 +18,8 @@ public class UserModel implements ModelInterface {
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT ");
         sql.append("	id, first_name, last_name, email, user_profile ");
-        sql.append(" FROM dbo.User ");
+        sql.append(" FROM dbo.UserProfile ");
+        //sql.append("SELECT * FROM dbo.User");
 
         List<Map.Entry<String, Object>> whereParameterList = DatabaseUtilities.createWhereParameterList(whereParameters);
         sql.append(DatabaseUtilities.prepareWhereStatement(whereParameterList));

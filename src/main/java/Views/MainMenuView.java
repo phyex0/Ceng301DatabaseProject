@@ -11,7 +11,6 @@ public class MainMenuView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
-
         Integer choice;
         do {
             System.out.println("1. Show all departments");
