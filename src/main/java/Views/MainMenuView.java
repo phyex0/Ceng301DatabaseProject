@@ -13,11 +13,24 @@ public class MainMenuView implements ViewInterface {
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
         Integer choice;
         do {
-            System.out.println("1. Show all departments");
-            System.out.println("2. Show departments");
-            System.out.println("3. Add a department");
-            System.out.println("4. Update a department");
-            System.out.println("5. Delete a department");
+            System.out.println("1. Show all Users");
+            System.out.println("2. Show User");
+            System.out.println("3. Add a User");
+            System.out.println("4. Update a User");
+            System.out.println("5. Delete a User");
+            //
+            System.out.println("6. Show all Projects");
+            System.out.println("7. Show Project");
+            System.out.println("8. Add a Project");
+            System.out.println("9. Update a Project");
+            System.out.println("10. Delete a Project");
+            //
+            System.out.println("11. Show all Tasks");
+            System.out.println("12. Show Task");
+            System.out.println("13. Add a Task");
+            System.out.println("14. Update a Task");
+            System.out.println("15. Delete a Task");
+
             System.out.println("6. Quit");
             System.out.println();
 
