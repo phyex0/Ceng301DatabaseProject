@@ -18,15 +18,23 @@ public class CommentView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        switch(operationName) {
-            case "select": return selectOperation(modelData);
-            case "insert": return insertOperation(modelData);
-            case "update": return updateOperation(modelData);
-            case "delete": return deleteOperation(modelData);
-            case "select.gui": return selectGUI(modelData);
-            case "insert.gui": return insertGUI(modelData);
-            case "update.gui": return updateGUI(modelData);
-            case "delete.gui": return deleteGUI(modelData);
+        switch (operationName) {
+            case "select":
+                return selectOperation(modelData);
+            case "insert":
+                return insertOperation(modelData);
+            case "update":
+                return updateOperation(modelData);
+            case "delete":
+                return deleteOperation(modelData);
+            case "select.gui":
+                return selectGUI(modelData);
+            case "insert.gui":
+                return insertGUI(modelData);
+            case "update.gui":
+                return updateGUI(modelData);
+            case "delete.gui":
+                return deleteGUI(modelData);
         }
 
         return new ViewData("MainMenu", "");
@@ -111,20 +119,18 @@ public class CommentView implements ViewInterface {
         List<Object> rows = new ArrayList<>();
 
 
-        int id;
+        Integer id;
         Integer task_id, user_id;
         String comment;
         Date date;
 
-        do
-        {
+        do {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            task_id = getInteger("task_id : ", false);
-            user_id = getInteger("user_id : ", false);
-            comment = getString("comment : ", false);
-            date = getDate("date : ", false);
-
+            id = getInteger("id", true);
+            task_id = getInteger("task_id : ", true);
+            user_id = getInteger("user_id : ", true);
+            comment = getString("comment : ", true);
+            date = getDate("date : ", true);
 
 
             System.out.println();

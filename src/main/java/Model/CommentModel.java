@@ -125,4 +125,6 @@ public class CommentModel implements ModelInterface {
 
         return rowCount;
     }
+
+
 }

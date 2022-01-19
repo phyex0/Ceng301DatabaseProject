@@ -33,6 +33,7 @@ public class AssignedTaskModel implements ModelInterface {
         return result;
     }
 
+
     @Override
     public int insert(String fieldNames, List<Object> rows) throws Exception {
         // construct SQL statement
@@ -125,4 +126,5 @@ public class AssignedTaskModel implements ModelInterface {
 
         return rowCount;
     }
+
 }

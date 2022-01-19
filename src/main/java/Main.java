@@ -1,13 +1,7 @@
 import Controllers.Controller;
-import Model.ModelData;
-import Model.NopModel;
-import Model.PersonModel;
-import Model.ProjectModel;
+import Model.*;
 import Utility.DatabaseUtilities;
-import Views.MainMenuView;
-import Views.PersonView;
-import Views.ProjectView;
-import Views.ViewData;
+import Views.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +16,10 @@ public class Main {
         Map<String, Controller> router = new HashMap<>();
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
         router.put("Person", new Controller(new PersonView(), new PersonModel()));
-        router.put("Project",new Controller(new ProjectView(),new ProjectModel()));
+        router.put("Project", new Controller(new ProjectView(), new ProjectModel()));
+        router.put("Task", new Controller(new TaskView(), new TaskModel()));
+        router.put("AssignedTask", new Controller(new AssignedTaskView(), new AssignedTaskModel()));
+        router.put("Comment", new Controller(new CommentView(), new CommentModel()));
 
         ViewData viewData = new ViewData("MainMenu", "");
         do {
@@ -48,8 +45,8 @@ public class Main {
     }
 
     public static void connectToDatabase() {
-        DatabaseUtilities.host = "DESKTOP-HFDS938";
-        //DatabaseUtilities.host = "MONSTER-PC:1433";
+        //DatabaseUtilities.host = "DESKTOP-HFDS938";
+        DatabaseUtilities.host = "MONSTER-PC:1433";
         DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";
