@@ -98,21 +98,18 @@ public class ProjectView implements ViewInterface {
 
         List<Object> rows = new ArrayList<>();
 
-        int id;
         String name;
         Integer user_id;
         do
         {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            name = getString("name : ", false);
-            user_id = getInteger("user_id : ", false);
-
+            name = getString("name : ", true);
+            user_id = getInteger("user_id : ", true);
 
             System.out.println();
 
             if (name != null && user_id != null) {
-                rows.add(new Project(id, name, user_id));
+                rows.add(new Project(name, user_id));
             }
         }
         while (name != null && user_id != null );
@@ -126,14 +123,11 @@ public class ProjectView implements ViewInterface {
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-
-        int id = getInteger("id", false);
-        String name = getString("name : ", false);
-        Integer user_id = getInteger("user_id : ", false);
-
-
+        String name = getString("name : ", true);
+        Integer user_id = getInteger("user_id : ", true);
 
         System.out.println();
+
 
         Map<String, Object> updateParameters = new HashMap<>();
         if (name != null) updateParameters.put("name", name);

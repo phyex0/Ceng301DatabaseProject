@@ -124,6 +124,7 @@ public class PersonView implements ViewInterface {
             if (first_name != null && last_name != null && email !=null && password != null && user_profile != null) {
                 rows.add(new Person(first_name, last_name, email, password, user_profile));
             }
+            System.out.println(first_name + last_name + email + password + user_profile);
         }
         while (first_name != null && last_name != null && email != null && password != null && user_profile != null);
 
@@ -136,11 +137,11 @@ public class PersonView implements ViewInterface {
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-        String first_name = getString("first_name : ", false);
-        String last_name = getString("last_name : ", false);
-        String email = getString("email : ", false);
-        String password = getString("password : ", false);
-        String user_profile = getString("user_profile : ", false);
+        String first_name = getString("first_name : ", true);
+        String last_name = getString("last_name : ", true);
+        String email = getString("email : ", true);
+        String password = getString("password : ", true);
+        String user_profile = getString("user_profile : ", true);
 
 
         System.out.println();

@@ -134,10 +134,10 @@ public class TaskView implements ViewInterface {
         do
         {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            title = getString("title : ", false);
-            description = getString("description : ", false);
-            due_date = getDate("due_date : ", false);
+            id = getInteger("id", true);
+            title = getString("title : ", true);
+            description = getString("description : ", true);
+            due_date = getDate("due_date : ", true);
             emergency = getString("emergency : ", false);
             section_status = getInteger("section_status : ", false);
             project_id = getInteger("project_id : ", false);

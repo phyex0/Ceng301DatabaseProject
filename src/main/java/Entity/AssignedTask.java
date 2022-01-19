@@ -10,7 +10,7 @@ public class AssignedTask {
     int task_id;
     Date assigned_date;
 
-    public AssignedTask() {
+    public AssignedTask(Integer source_user, Integer destination_user, Integer task_id, Date assigned_date) {
     }
 
     public AssignedTask(int id, int source_user, int destination_user, int task_id, Date assigned_date) {

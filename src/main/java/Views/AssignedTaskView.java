@@ -119,16 +119,16 @@ public class AssignedTaskView implements ViewInterface {
         do
         {
             System.out.println("Fields to insert:");
-            id = getInteger("id", false);
-            source_user = getInteger("source_user : ", false);
-            destination_user = getInteger("destination_user : ", false);
-            task_id = getInteger("task_id : ", false);
-            assigned_date = getDate("assigned_date : ", false);
+
+            source_user = getInteger("source_user : ", true);
+            destination_user = getInteger("destination_user : ", true);
+            task_id = getInteger("task_id : ", true);
+            assigned_date = getDate("assigned_date : ", true);
 
             System.out.println();
 
             if (source_user != null && destination_user != null && task_id != null && assigned_date != null) {
-                rows.add(new AssignedTask(id, source_user, destination_user, task_id, assigned_date));
+                rows.add(new AssignedTask(source_user, destination_user, task_id, assigned_date));
             }
         }
         while (source_user != null && destination_user != null && task_id != null && assigned_date != null);
@@ -142,11 +142,10 @@ public class AssignedTaskView implements ViewInterface {
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-        int id = getInteger("id", false);
-        Integer source_user = getInteger("source_user : ", false);
-        Integer destination_user = getInteger("destination_user : ", false);
-        Integer task_id = getInteger("task_id : ", false);
-        Date assigned_date = getDate("assigned_date", false);
+        Integer source_user = getInteger("source_user : ", true);
+        Integer destination_user = getInteger("destination_user : ", true);
+        Integer task_id = getInteger("task_id : ", true);
+        Date assigned_date = getDate("assigned_date", true);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();

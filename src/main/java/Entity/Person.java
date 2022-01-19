@@ -10,6 +10,11 @@ public class Person {
     String user_profile;
 
     public Person(String first_name, String last_name, String email, String password, String user_profile) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.user_profile = user_profile;
     }
 
     public Person(int id, String first_name, String last_name, String email, String password, String user_profile) {

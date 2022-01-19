@@ -6,7 +6,7 @@ public class Project {
     String name;
     int user_id;
 
-    public Project() {
+    public Project(String name, Integer user_id) {
     }
 
     public Project(int id, String name, int user_id) {
