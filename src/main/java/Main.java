@@ -19,6 +19,24 @@ public class Main {
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
         router.put("Register", new Controller(new RegisterView(), new RegisterModel()));
+        ViewData viewData;
+        viewData = new ViewData("Register", "");
+
+
+        Controller c = router.get(viewData.functionName);
+        ModelData md = c.executeModel(viewData);
+        viewData = c.getView(md, viewData.functionName, viewData.operationName);
+
+        if (viewData.operationName == null)
+            return;
+        if (md.resultSet == null) {
+            System.out.println("I'm null");
+            return;
+        }
+
+
+        System.out.println("Test");
+
 
         //control
 
@@ -29,7 +47,7 @@ public class Main {
         router.put("AssignedTask", new Controller(new AssignedTaskView(), new AssignedTaskModel()));
         router.put("Comment", new Controller(new CommentView(), new CommentModel()));
 
-        ViewData viewData = new ViewData("MainMenu", "");
+        viewData = new ViewData("MainMenu", "");
         do {
             // Model, View, and Controller
             Controller controller = router.get(viewData.functionName);
@@ -53,8 +71,8 @@ public class Main {
     }
 
     public static void connectToDatabase() {
-        DatabaseUtilities.host = "DESKTOP-HFDS938";
-        //DatabaseUtilities.host = "MONSTER-PC:1433";
+        //DatabaseUtilities.host = "DESKTOP-HFDS938";
+        DatabaseUtilities.host = "MONSTER-PC:1433";
         DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";
