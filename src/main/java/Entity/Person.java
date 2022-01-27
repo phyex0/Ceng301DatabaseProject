@@ -26,6 +26,11 @@ public class Person {
         this.user_profile = user_profile;
     }
 
+    public Person(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }

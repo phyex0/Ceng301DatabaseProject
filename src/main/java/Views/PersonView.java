@@ -1,19 +1,15 @@
 package Views;
 
-import Entity.Comment;
 import Entity.Person;
-import Entity.Project;
-import Entity.Task;
 import Model.ModelData;
 
 import java.sql.ResultSet;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommentView implements ViewInterface {
+public class PersonView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
@@ -47,18 +43,20 @@ public class CommentView implements ViewInterface {
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
-                int task_id = resultSet.getInt("task_id");
-                int user_id = resultSet.getInt("user_id");
-                String comment = resultSet.getString("comment");
-                Date date = resultSet.getDate("date");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String user_profile = resultSet.getString("user_profile");
+
 
                 // Display values
                 System.out.print(id + "\t");
-                System.out.print(task_id + "\t");
-                System.out.print(user_id + "\t");
-                System.out.print(comment + "\t");
-                System.out.print(date + "\t");
-
+                System.out.print(first_name + "\t");
+                System.out.print(last_name + "\t");
+                System.out.print(email + "\t");
+                System.out.print(password + "\t");
+                System.out.print(user_profile);
                 System.out.println();
             }
             resultSet.close();
@@ -87,19 +85,20 @@ public class CommentView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
-
-        Integer id = getInteger("id : ", true);
-        Integer task_id = getInteger("task_id : ", true);
-        Integer user_id = getInteger("user_id : ", true);
-        String comment = getString("comment : ", true);
-        Date date = getDate("date", true);
+        Integer id = getInteger("id", true);
+        String first_name = getString("first_name : ", true);
+        String last_name = getString("last_name", true);
+        String email = getString("email", true);
+        String password = getString("password", true);
+        String user_profile = getString("user_profile", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
-        if (task_id != null) whereParameters.put("task_id", task_id);
-        if (user_id != null) whereParameters.put("user_id", user_id);
-        if (comment != null) whereParameters.put("comment", comment);
-        if (date != null) whereParameters.put("date", date);
+        if (first_name != null) whereParameters.put("first_name", first_name);
+        if (last_name != null) whereParameters.put("last_name", last_name);
+        if (email != null) whereParameters.put("email", email);
+        if (password != null) whereParameters.put("password", password);
+        if (user_profile != null) whereParameters.put("user_profile", user_profile);
 
         return whereParameters;
     }
@@ -108,42 +107,39 @@ public class CommentView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "select", parameters);
+        return new ViewData("Person", "select", parameters);
     }
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "id, task_id, user_id, comment, date");
+        parameters.put("fieldNames", "id, first_name, last_name, email, password, user_profile");
 
         List<Object> rows = new ArrayList<>();
 
-
         Integer id;
-        Integer task_id, user_id;
-        String comment;
-        Date date;
-
+        String first_name, last_name, email, password, user_profile;
         do {
             System.out.println("Fields to insert:");
             id = getInteger("id : ", true);
-            task_id = getInteger("task_id : ", true);
-            user_id = getInteger("user_id : ", true);
-            comment = getString("comment : ", true);
-            date = getDate("date : ", true);
-
+            first_name = getString("first_name : ", true);
+            last_name = getString("last_name : ", true);
+            email = getString("email : ", true);
+            password = getString("password : ", true);
+            user_profile = getString("user_profile : ", true);
 
             System.out.println();
 
-            if (task_id != null && user_id != null && comment != null && date != null) {
-                rows.add(new Comment(id, task_id, user_id, comment, date));
+            if (id != null && first_name != null && last_name != null && email != null && password != null && user_profile != null) {
+                System.out.println(first_name + " " + last_name + " " + email + " " + password + " " + user_profile);
+                rows.add(new Person(id, first_name, last_name, email, password, user_profile));
             }
         }
-        while (task_id != null && user_id != null && comment != null && date != null);
+        while (id != null && first_name != null && last_name != null && email != null && password != null && user_profile != null);
 
         parameters.put("rows", rows);
 
-        return new ViewData("Comment", "insert", parameters);
+        return new ViewData("Person", "insert", parameters);
     }
 
 
@@ -151,37 +147,40 @@ public class CommentView implements ViewInterface {
         System.out.println("Fields to update:");
 
 
-        int id = getInteger("id", false);
-        Integer task_id = getInteger("task_id : ", false);
-        Integer user_id = getInteger("user_id : ", false);
-        String comment = getString("comment : ", false);
-        Date date = getDate("date : ", false);
+        int id = getInteger("id", true);
+        String first_name = getString("first_name : ", true);
+        String last_name = getString("last_name : ", true);
+        String email = getString("email : ", true);
+        String password = getString("password : ", true);
+        String user_profile = getString("user_profile : ", true);
+
 
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
+        if (first_name != null) updateParameters.put("first_name", first_name);
+        if (last_name != null) updateParameters.put("last_name", last_name);
+        if (email != null) updateParameters.put("email", email);
+        if (password != null) updateParameters.put("password", password);
+        if (user_profile != null) updateParameters.put("user_profile", user_profile);
 
-        if (task_id != null) updateParameters.put("task_id", task_id);
-        if (user_id != null) updateParameters.put("user_id", user_id);
-        if (comment != null) updateParameters.put("comment", comment);
-        if (date != null) updateParameters.put("date", date);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "update", parameters);
+        return new ViewData("Person", "update", parameters);
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "delete", parameters);
+        return new ViewData("Person", "delete", parameters);
     }
 
     @Override
     public String toString() {
-        return "Comment View";
+        return "Person View";
     }
 }

@@ -11,9 +11,17 @@ public class Main {
         connectToDatabase();
 
 
+        //1-register
+        //2-login
+
+
         // Model View Controller (MVC)
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
+        router.put("Register", new Controller(new RegisterView(), new RegisterModel()));
+
+        //control
+
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
         router.put("Person", new Controller(new PersonView(), new PersonModel()));
         router.put("Project", new Controller(new ProjectView(), new ProjectModel()));
@@ -45,8 +53,8 @@ public class Main {
     }
 
     public static void connectToDatabase() {
-        //DatabaseUtilities.host = "DESKTOP-HFDS938";
-        DatabaseUtilities.host = "MONSTER-PC:1433";
+        DatabaseUtilities.host = "DESKTOP-HFDS938";
+        //DatabaseUtilities.host = "MONSTER-PC:1433";
         DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";

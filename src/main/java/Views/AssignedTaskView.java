@@ -1,6 +1,6 @@
 package Views;
 
-import Entity.Comment;
+import Entity.AssignedTask;
 import Entity.Person;
 import Entity.Project;
 import Entity.Task;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommentView implements ViewInterface {
+public class AssignedTaskView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
@@ -47,16 +47,17 @@ public class CommentView implements ViewInterface {
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
+                int source_user = resultSet.getInt("source_user");
+                int destination_user = resultSet.getInt("destination_user");
                 int task_id = resultSet.getInt("task_id");
-                int user_id = resultSet.getInt("user_id");
-                String comment = resultSet.getString("comment");
-                Date date = resultSet.getDate("date");
+                Date date = resultSet.getDate("assigned_date");
+
 
                 // Display values
                 System.out.print(id + "\t");
+                System.out.print(source_user + "\t");
+                System.out.print(destination_user + "\t");
                 System.out.print(task_id + "\t");
-                System.out.print(user_id + "\t");
-                System.out.print(comment + "\t");
                 System.out.print(date + "\t");
 
                 System.out.println();
@@ -88,17 +89,18 @@ public class CommentView implements ViewInterface {
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
 
+
         Integer id = getInteger("id : ", true);
+        Integer source_user = getInteger("source_user", true);
+        Integer destination_user = getInteger("destination_user", true);
         Integer task_id = getInteger("task_id : ", true);
-        Integer user_id = getInteger("user_id : ", true);
-        String comment = getString("comment : ", true);
-        Date date = getDate("date", true);
+        Date date = getDate("date : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
+        if (source_user != null) whereParameters.put("source_user", source_user);
+        if (destination_user != null) whereParameters.put("destination_user", destination_user);
         if (task_id != null) whereParameters.put("task_id", task_id);
-        if (user_id != null) whereParameters.put("user_id", user_id);
-        if (comment != null) whereParameters.put("comment", comment);
         if (date != null) whereParameters.put("date", date);
 
         return whereParameters;
@@ -108,80 +110,75 @@ public class CommentView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "select", parameters);
+        return new ViewData("AssignedTask", "select", parameters);
     }
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "id, task_id, user_id, comment, date");
+        parameters.put("fieldNames", "id, source_user, destination_user, task_id, assigned_date");
 
         List<Object> rows = new ArrayList<>();
 
 
         Integer id;
-        Integer task_id, user_id;
-        String comment;
-        Date date;
-
+        Integer source_user, destination_user, task_id;
+        Date assigned_date;
         do {
             System.out.println("Fields to insert:");
             id = getInteger("id : ", true);
+            source_user = getInteger("source_user : ", true);
+            destination_user = getInteger("destination_user : ", true);
             task_id = getInteger("task_id : ", true);
-            user_id = getInteger("user_id : ", true);
-            comment = getString("comment : ", true);
-            date = getDate("date : ", true);
-
+            assigned_date = getDate("assigned_date : ", true);
 
             System.out.println();
 
-            if (task_id != null && user_id != null && comment != null && date != null) {
-                rows.add(new Comment(id, task_id, user_id, comment, date));
+            if (source_user != null && destination_user != null && task_id != null && assigned_date != null) {
+                rows.add(new AssignedTask(id, source_user, destination_user, task_id, assigned_date));
             }
         }
-        while (task_id != null && user_id != null && comment != null && date != null);
+        while (source_user != null && destination_user != null && task_id != null && assigned_date != null);
 
         parameters.put("rows", rows);
 
-        return new ViewData("Comment", "insert", parameters);
+        return new ViewData("AssignedTask", "insert", parameters);
     }
 
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
 
-
         int id = getInteger("id", false);
+        Integer source_user = getInteger("source_user : ", false);
+        Integer destination_user = getInteger("destination_user : ", false);
         Integer task_id = getInteger("task_id : ", false);
-        Integer user_id = getInteger("user_id : ", false);
-        String comment = getString("comment : ", false);
-        Date date = getDate("date : ", false);
-
+        Date assigned_date = getDate("assigned_date", false);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
 
+        if (source_user != null) updateParameters.put("source_user", source_user);
+        if (destination_user != null) updateParameters.put("destination_user", destination_user);
         if (task_id != null) updateParameters.put("task_id", task_id);
-        if (user_id != null) updateParameters.put("user_id", user_id);
-        if (comment != null) updateParameters.put("comment", comment);
-        if (date != null) updateParameters.put("date", date);
+        if (assigned_date != null) updateParameters.put("assigned_date", assigned_date);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "update", parameters);
+        return new ViewData("AssignedTask", "update", parameters);
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Comment", "delete", parameters);
+        return new ViewData("AssignedTask", "delete", parameters);
     }
 
     @Override
     public String toString() {
-        return "Comment View";
+        return "AssignedTask View";
     }
 }
