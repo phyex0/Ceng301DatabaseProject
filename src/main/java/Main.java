@@ -10,36 +10,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
         connectToDatabase();
 
-
-        //1-register
-        //2-login
-
-
         // Model View Controller (MVC)
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
+
+
         router.put("Register", new Controller(new RegisterView(), new RegisterModel()));
-        ViewData viewData;
-        viewData = new ViewData("Register", "");
-
-
-        Controller c = router.get(viewData.functionName);
-        ModelData md = c.executeModel(viewData);
-        viewData = c.getView(md, viewData.functionName, viewData.operationName);
-
-        if (viewData.operationName == null)
-            return;
-        if (md.resultSet == null) {
-            System.out.println("I'm null");
-            return;
-        }
-
-
-        System.out.println("Test");
-
-
-        //control
-
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
         router.put("Person", new Controller(new PersonView(), new PersonModel()));
         router.put("Project", new Controller(new ProjectView(), new ProjectModel()));
@@ -47,12 +23,28 @@ public class Main {
         router.put("AssignedTask", new Controller(new AssignedTaskView(), new AssignedTaskModel()));
         router.put("Comment", new Controller(new CommentView(), new CommentModel()));
 
-        viewData = new ViewData("MainMenu", "");
+        ViewData viewDataR = new ViewData("Register", "");
+        ViewData viewData = new ViewData("MainMenu", "");
+
+        do {
+            // Model, View, and Controller
+            Controller controller = router.get(viewDataR.functionName);
+            ModelData modelData = controller.executeModel(viewDataR);
+            viewDataR = controller.getView(modelData, viewDataR.functionName, viewDataR.operationName);
+
+
+            System.out.println();
+            //System.out.println("-------------------------------------------------");
+            System.out.println();
+        }
+        while (viewDataR.functionName != null);
+
         do {
             // Model, View, and Controller
             Controller controller = router.get(viewData.functionName);
             ModelData modelData = controller.executeModel(viewData);
             viewData = controller.getView(modelData, viewData.functionName, viewData.operationName);
+
 
             System.out.println();
             System.out.println("-------------------------------------------------");
@@ -71,8 +63,8 @@ public class Main {
     }
 
     public static void connectToDatabase() {
-        //DatabaseUtilities.host = "DESKTOP-HFDS938";
-        DatabaseUtilities.host = "MONSTER-PC:1433";
+        DatabaseUtilities.host = "DESKTOP-HFDS938";
+        //DatabaseUtilities.host = "MONSTER-PC:1433";
         DatabaseUtilities.databaseName = "TaskManagement";
         DatabaseUtilities.userName = "sa";
         DatabaseUtilities.password = "ekmek";

@@ -22,9 +22,11 @@ public class RegisterView implements ViewInterface {
         }
         while (choice == null || choice < 1 || choice > 2);
 
-        if(choice == 1)
+        if(choice == 1) {
             return selectGUI(modelData);
-        return new ViewData("Register", null, new HashMap<>());
+        }
+
+        return new ViewData("Register", "");
     }
 
     ViewData selectOperation(ModelData modelData) throws Exception {
@@ -34,7 +36,7 @@ public class RegisterView implements ViewInterface {
 
         String email, password;
 
-        System.out.println("Fields to insert:");
+        System.out.println("Fields to login:");
         email = getString("email : ", true);
         password = getString("password : ", true);
 
@@ -70,12 +72,12 @@ public class RegisterView implements ViewInterface {
 
 
     Map<String, Object> getWhereParameters() throws Exception {
-        System.out.println("Filter conditions:");
+        //System.out.println("Filter conditions:");
         //Integer id = getInteger("id", true);
         //String first_name = getString("first_name : ", true);
         //String last_name = getString("last_name", true);
-        String email = getString("email", true);
-        String password = getString("password", true);
+        String email = getString("email: ", true);
+        String password = getString("password: ", true);
         //String user_profile = getString("user_profile", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
@@ -85,6 +87,8 @@ public class RegisterView implements ViewInterface {
         if (email != null) whereParameters.put("email", email);
         if (password != null) whereParameters.put("password", password);
         //if (user_profile != null) whereParameters.put("user_profile", user_profile);
+
+
 
         return whereParameters;
     }
