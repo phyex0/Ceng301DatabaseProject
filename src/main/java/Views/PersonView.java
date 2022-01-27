@@ -49,7 +49,6 @@ public class PersonView implements ViewInterface {
                 String password = resultSet.getString("password");
                 String user_profile = resultSet.getString("user_profile");
 
-
                 // Display values
                 System.out.print(id + "\t");
                 System.out.print(first_name + "\t");

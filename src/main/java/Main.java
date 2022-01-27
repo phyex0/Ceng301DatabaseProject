@@ -53,7 +53,6 @@ public class Main {
 
         System.out.println("Program is ended...");
 
-
         // Disconnect from database
         disconnectFromDatabase();
 
