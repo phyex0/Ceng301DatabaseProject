@@ -13,6 +13,8 @@ public class RegisterView implements ViewInterface {
 
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
+        return selectGUI(modelData);
+        /*
         Integer choice;
         do {
             System.out.println("1. Login");
@@ -27,6 +29,8 @@ public class RegisterView implements ViewInterface {
         }
 
         return new ViewData("Register", "");
+        */
+
     }
 
     ViewData selectOperation(ModelData modelData) throws Exception {
@@ -72,6 +76,7 @@ public class RegisterView implements ViewInterface {
 
 
     Map<String, Object> getWhereParameters() throws Exception {
+        System.out.println("Login to the system!");
         //System.out.println("Filter conditions:");
         //Integer id = getInteger("id", true);
         //String first_name = getString("first_name : ", true);

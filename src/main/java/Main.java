@@ -14,7 +14,6 @@ public class Main {
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
 
-
         router.put("Register", new Controller(new RegisterView(), new RegisterModel()));
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
         router.put("Person", new Controller(new PersonView(), new PersonModel()));
@@ -32,28 +31,26 @@ public class Main {
             ModelData modelData = controller.executeModel(viewDataR);
             viewDataR = controller.getView(modelData, viewDataR.functionName, viewDataR.operationName);
 
-
-            System.out.println();
-            //System.out.println("-------------------------------------------------");
-            System.out.println();
-        }
-        while (viewDataR.functionName != null);
-
-        do {
-            // Model, View, and Controller
-            Controller controller = router.get(viewData.functionName);
-            ModelData modelData = controller.executeModel(viewData);
-            viewData = controller.getView(modelData, viewData.functionName, viewData.operationName);
-
-
             System.out.println();
             System.out.println("-------------------------------------------------");
             System.out.println();
         }
-        while (viewData.functionName != null);
+        while (viewDataR.functionName != null);
 
-        System.out.println();
-        System.out.println();
+        if(viewDataR == null) {
+            do {
+                // Model, View, and Controller
+                Controller controller = router.get(viewData.functionName);
+                ModelData modelData = controller.executeModel(viewData);
+                viewData = controller.getView(modelData, viewData.functionName, viewData.operationName);
+
+                System.out.println();
+                System.out.println("-------------------------------------------------");
+                System.out.println();
+            }
+            while (viewData.functionName != null);
+        }
+
         System.out.println("Program is ended...");
 
 

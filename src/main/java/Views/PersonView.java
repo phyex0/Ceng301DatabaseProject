@@ -58,11 +58,14 @@ public class PersonView implements ViewInterface {
                 System.out.print(password + "\t");
                 System.out.print(user_profile);
                 System.out.println();
+
+                return new ViewData("MainMenu", "");
             }
             resultSet.close();
         }
 
-        return new ViewData("MainMenu", "");
+        System.out.println("Wrong email or password!");
+        return new ViewData("Register", "");
     }
 
     ViewData insertOperation(ModelData modelData) throws Exception {
