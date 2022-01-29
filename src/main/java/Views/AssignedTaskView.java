@@ -95,7 +95,7 @@ public class AssignedTaskView implements ViewInterface {
         Integer source_user = getInteger("source_user", true);
         Integer destination_user = getInteger("destination_user", true);
         Integer task_id = getInteger("task_id : ", true);
-        Date date = getDate("date : ", true);
+        String date = getDate("date : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -124,7 +124,7 @@ public class AssignedTaskView implements ViewInterface {
 
         Integer id;
         Integer source_user, destination_user, task_id;
-        Date assigned_date;
+        String assigned_date;
         do {
             System.out.println("Fields to insert:");
             id = ModelInterface.getRandomId("dbo.AssignedTask");
@@ -154,7 +154,7 @@ public class AssignedTaskView implements ViewInterface {
         Integer source_user = getInteger("source_user : ", false);
         Integer destination_user = getInteger("destination_user : ", false);
         Integer task_id = getInteger("task_id : ", false);
-        Date assigned_date = getDate("assigned_date", false);
+        String assigned_date = getDate("assigned_date", false);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();

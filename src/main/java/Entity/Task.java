@@ -7,17 +7,16 @@ public class Task {
     int id;
     String title;
     String description;
-    Date due_date;
+    String due_date;
     String emergency;
     int section_status;
     int project_id;
     int user_id;
-    Integer root_task;
 
     public Task() {
     }
 
-    public Task(int id, String title, String description, Date due_date, String emergency, int section_status, int project_id, int user_id, Integer root_task) {
+    public Task(int id, String title, String description, String due_date, String emergency, int section_status, int project_id, int user_id) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -26,7 +25,7 @@ public class Task {
         this.section_status = section_status;
         this.project_id = project_id;
         this.user_id = user_id;
-        this.root_task = root_task;
+
     }
 
     public int getId() {
@@ -53,11 +52,11 @@ public class Task {
         this.description = description;
     }
 
-    public Date getDue_date() {
+    public String getDue_date() {
         return due_date;
     }
 
-    public void setDue_date(Date due_date) {
+    public void setDue_date(String due_date) {
         this.due_date = due_date;
     }
 
@@ -93,13 +92,6 @@ public class Task {
         this.user_id = user_id;
     }
 
-    public Integer getRoot_task() {
-        return root_task;
-    }
-
-    public void setRoot_task(Integer root_task) {
-        this.root_task = root_task;
-    }
 
     public Object getByName(String attributeName) {
         switch (attributeName) {
@@ -119,8 +111,6 @@ public class Task {
                 return project_id;
             case "user_id":
                 return user_id;
-            case "root_task":
-                return root_task;
             default:
                 return null;
         }
@@ -137,7 +127,6 @@ public class Task {
                 ", section_status=" + section_status +
                 ", project_id=" + project_id +
                 ", user_id=" + user_id +
-                ", root_task=" + root_task +
                 '}';
     }
 }

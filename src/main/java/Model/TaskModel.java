@@ -67,7 +67,7 @@ public class TaskModel implements ModelInterface {
         }
         //System.out.println(sql.toString());
 
-
+        System.out.println("sql statemetn" + sql.toString());
         // execute constructed SQL statement
         if (rowCount > 0) {
             Connection connection = DatabaseUtilities.getConnection();

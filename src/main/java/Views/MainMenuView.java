@@ -106,7 +106,7 @@ public class MainMenuView implements ViewInterface {
     }
 
     @Override
-    public Date getDate(String prompt, boolean allowNulls) throws ParseException {
+    public String getDate(String prompt, boolean allowNulls) throws ParseException {
         return ViewInterface.super.getDate(prompt, allowNulls);
     }
 

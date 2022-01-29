@@ -81,11 +81,12 @@ public interface ViewInterface {
         return inputValue;
     }
 
-    public default Date getDate(String prompt, boolean allowNulls) throws ParseException {
+    public default String getDate(String prompt, boolean allowNulls) throws ParseException {
         Date inputValue;
+        String input;
         do {
             System.out.print(prompt);
-            String input = scanner.nextLine();
+            input = scanner.nextLine();
             if (allowNulls && input.trim().equals("")) {
                 return null;
             }
@@ -93,8 +94,9 @@ public interface ViewInterface {
                 inputValue = null;
             } else {
                 try {
-                    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     inputValue = formatter.parse(input);
+
                 } catch (Exception e) {
                     inputValue = null;
                 }
@@ -102,7 +104,7 @@ public interface ViewInterface {
         }
         while (inputValue == null);
 
-        return inputValue;
+        return input;
     }
 
     public default String getString(String prompt, boolean allowNulls) throws ParseException {

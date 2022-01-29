@@ -51,7 +51,7 @@ public class CommentView implements ViewInterface {
                 int task_id = resultSet.getInt("task_id");
                 int user_id = resultSet.getInt("user_id");
                 String comment = resultSet.getString("comment");
-                Date date = resultSet.getDate("date");
+                String date = String.valueOf(resultSet.getDate("date"));
 
                 // Display values
                 System.out.print(id + "\t");
@@ -93,7 +93,7 @@ public class CommentView implements ViewInterface {
         Integer task_id = getInteger("task_id : ", true);
         Integer user_id = getInteger("user_id : ", true);
         String comment = getString("comment : ", true);
-        Date date = getDate("date", true);
+        String date = getDate("date", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -123,7 +123,7 @@ public class CommentView implements ViewInterface {
         Integer id;
         Integer task_id, user_id;
         String comment;
-        Date date;
+        String date;
 
         do {
             System.out.println("Fields to insert:");
@@ -156,7 +156,7 @@ public class CommentView implements ViewInterface {
         Integer task_id = getInteger("task_id : ", false);
         Integer user_id = getInteger("user_id : ", false);
         String comment = getString("comment : ", false);
-        Date date = getDate("date : ", false);
+        String date = getDate("date : ", false);
 
         System.out.println();
 

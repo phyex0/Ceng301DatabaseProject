@@ -1,19 +1,17 @@
 package Entity;
 
-import java.util.Date;
-
 public class Comment {
 
     int id;
     int task_id;
     int user_id;
     String comment;
-    Date date;
+    String date;
 
     public Comment() {
     }
 
-    public Comment(int id, int task_id, int user_id, String comment, Date date) {
+    public Comment(int id, int task_id, int user_id, String comment, String date) {
         this.id = id;
         this.task_id = task_id;
         this.user_id = user_id;
@@ -53,11 +51,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

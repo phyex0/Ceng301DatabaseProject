@@ -8,12 +8,12 @@ public class AssignedTask {
     int source_user;
     int destination_user;
     int task_id;
-    Date assigned_date;
+    String assigned_date;
 
     public AssignedTask(Integer source_user, Integer destination_user, Integer task_id, Date assigned_date) {
     }
 
-    public AssignedTask(int id, int source_user, int destination_user, int task_id, Date assigned_date) {
+    public AssignedTask(int id, int source_user, int destination_user, int task_id, String assigned_date) {
         this.id = id;
         this.source_user = source_user;
         this.destination_user = destination_user;
@@ -53,11 +53,11 @@ public class AssignedTask {
         this.task_id = task_id;
     }
 
-    public Date getAssigned_date() {
+    public String getAssigned_date() {
         return assigned_date;
     }
 
-    public void setAssigned_date(Date assigned_date) {
+    public void setAssigned_date(String assigned_date) {
         this.assigned_date = assigned_date;
     }
 

@@ -54,7 +54,6 @@ public class TaskView implements ViewInterface {
                 int section_status = resultSet.getInt("section_status");
                 int project_id = resultSet.getInt("project_id");
                 int user_id = resultSet.getInt("user_id");
-                int root_task = resultSet.getInt("root_task");
 
                 // Display values
                 System.out.print(id + "\t");
@@ -65,7 +64,6 @@ public class TaskView implements ViewInterface {
                 System.out.print(section_status + "\t");
                 System.out.print(project_id + "\t");
                 System.out.print(user_id + "\t");
-                System.out.print(root_task + "\t");
 
                 System.out.println();
             }
@@ -100,12 +98,11 @@ public class TaskView implements ViewInterface {
         Integer id = getInteger("id : ", true);
         String title = getString("title : ", true);
         String description = getString("description : ", true);
-        Date due_date = (Date) getDate("due_date : ", true);
+        String due_date = getDate("due_date : ", true);
         String emergency = getString("emergency", true);
         Integer section_status = getInteger("section_status", true);
         Integer project_id = getInteger("project_id", true);
         Integer user_id = getInteger("user_id : ", true);
-        Integer root_task = getInteger("root_task : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -116,7 +113,6 @@ public class TaskView implements ViewInterface {
         if (section_status != null) whereParameters.put("section_status", section_status);
         if (project_id != null) whereParameters.put("project_id", project_id);
         if (user_id != null) whereParameters.put("user_id", user_id);
-        if (root_task != null) whereParameters.put("root_task", root_task);
 
         return whereParameters;
     }
@@ -131,15 +127,15 @@ public class TaskView implements ViewInterface {
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "id, title, description, due_date, emergency, section_status, project_id, user_id, root_task");
+        parameters.put("fieldNames", "id, title, description, due_date, emergency, section_status, project_id, user_id");
 
         List<Object> rows = new ArrayList<>();
 
 
         Integer id;
         String title, description, emergency;
-        Date due_date;
-        Integer section_status, project_id, user_id, root_task;
+        String due_date;
+        Integer section_status, project_id, user_id;
         do {
             System.out.println("Fields to insert:");
             id = ModelInterface.getRandomId("dbo.Task");
@@ -150,13 +146,12 @@ public class TaskView implements ViewInterface {
             section_status = getInteger("section_status : ", true);
             project_id = getInteger("project_id : ", true);
             user_id = getInteger("user_id : ", true);
-            root_task = getInteger("root_task", true);
 
 
             System.out.println();
 
             if (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null) {
-                rows.add(new Task(id, title, description, due_date, emergency, section_status, project_id, user_id, root_task));
+                rows.add(new Task(id, title, description, due_date, emergency, section_status, project_id, user_id));
             }
         }
         while (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null );
@@ -174,12 +169,11 @@ public class TaskView implements ViewInterface {
         int id = getInteger("id", false);
         String title = getString("title : ", false);
         String description = getString("description : ", false);
-        Date due_date = getDate("due_date : ", false);
+        String due_date = getDate("due_date : ", false);
         String emergency = getString("emergency : ", false);
         Integer section_status = getInteger("section_status : ", false);
         Integer project_id = getInteger("project_id : ", false);
         Integer user_id = getInteger("user_id : ", false);
-        Integer root_task = getInteger("root_task", false);
 
         System.out.println();
 
@@ -193,7 +187,6 @@ public class TaskView implements ViewInterface {
         if (section_status != null) updateParameters.put("section_status", section_status);
         if (project_id != null) updateParameters.put("project_id", project_id);
         if (user_id != null) updateParameters.put("user_id", user_id);
-        if (root_task != null) updateParameters.put("root_task", root_task);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
