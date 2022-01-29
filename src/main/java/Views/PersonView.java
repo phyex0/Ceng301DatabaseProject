@@ -39,6 +39,38 @@ public class PersonView implements ViewInterface {
     ViewData selectOperation(ModelData modelData) throws Exception {
         ResultSet resultSet = modelData.resultSet;
 
+        if (!resultSet.isBeforeFirst() ) {
+            System.out.println("Wrong email or password!");
+            return new ViewData("Register", "");
+        }
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                // Retrieve by column name
+                int id = resultSet.getInt("id");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String user_profile = resultSet.getString("user_profile");
+
+                // Display values
+                System.out.print(id + "\t");
+                System.out.print(first_name + "\t");
+                System.out.print(last_name + "\t");
+                System.out.print(email + "\t");
+                System.out.print(password + "\t");
+                System.out.print(user_profile);
+                System.out.println();
+            }
+            resultSet.close();
+            return new ViewData("MainMenu", "");
+        }
+        return null;
+    }
+
+    /*
+        ResultSet resultSet = modelData.resultSet;
+
         if (resultSet != null) {
             while (resultSet.next()) {
                 // Retrieve by column name
@@ -65,7 +97,7 @@ public class PersonView implements ViewInterface {
 
         System.out.println("Wrong email or password!");
         return new ViewData("Register", "");
-    }
+     */
 
     ViewData insertOperation(ModelData modelData) throws Exception {
         System.out.println("Number of inserted rows is " + modelData.recordCount);
