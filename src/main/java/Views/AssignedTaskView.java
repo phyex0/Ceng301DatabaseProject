@@ -5,6 +5,7 @@ import Entity.Person;
 import Entity.Project;
 import Entity.Task;
 import Model.ModelData;
+import Model.ModelInterface;
 
 import java.sql.ResultSet;
 import java.util.Date;
@@ -126,7 +127,7 @@ public class AssignedTaskView implements ViewInterface {
         Date assigned_date;
         do {
             System.out.println("Fields to insert:");
-            id = getInteger("id : ", true);
+            id = ModelInterface.getRandomId("dbo.AssignedTask");
             source_user = getInteger("source_user : ", true);
             destination_user = getInteger("destination_user : ", true);
             task_id = getInteger("task_id : ", true);

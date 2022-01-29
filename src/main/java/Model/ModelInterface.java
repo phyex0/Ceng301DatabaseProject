@@ -26,8 +26,7 @@ public interface ModelInterface {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT");
         sql.append("    id");
-        sql.append("FROM " + tableName);
-
+        sql.append(" FROM " + tableName);
         // execute constructed SQL statement
         Connection connection = DatabaseUtilities.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());

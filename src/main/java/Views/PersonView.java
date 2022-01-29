@@ -2,6 +2,7 @@ package Views;
 
 import Entity.Person;
 import Model.ModelData;
+import Model.ModelInterface;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -155,7 +156,7 @@ public class PersonView implements ViewInterface {
         String first_name, last_name, email, password, user_profile;
         do {
             System.out.println("Fields to insert:");
-            id = getInteger("id : ", true);
+            id = ModelInterface.getRandomId("dbo.Person");
             first_name = getString("first_name : ", true);
             last_name = getString("last_name : ", true);
             email = getString("email : ", true);

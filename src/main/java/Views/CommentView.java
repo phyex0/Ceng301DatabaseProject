@@ -5,6 +5,7 @@ import Entity.Person;
 import Entity.Project;
 import Entity.Task;
 import Model.ModelData;
+import Model.ModelInterface;
 
 import java.sql.ResultSet;
 import java.util.Date;
@@ -126,7 +127,7 @@ public class CommentView implements ViewInterface {
 
         do {
             System.out.println("Fields to insert:");
-            id = getInteger("id : ", true);
+            id = ModelInterface.getRandomId("dbo.Comment");
             task_id = getInteger("task_id : ", true);
             user_id = getInteger("user_id : ", true);
             comment = getString("comment : ", true);

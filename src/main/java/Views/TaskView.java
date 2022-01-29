@@ -4,6 +4,7 @@ import Entity.Person;
 import Entity.Project;
 import Entity.Task;
 import Model.ModelData;
+import Model.ModelInterface;
 
 import java.sql.ResultSet;
 import java.util.Date;
@@ -141,7 +142,7 @@ public class TaskView implements ViewInterface {
         Integer section_status, project_id, user_id, root_task;
         do {
             System.out.println("Fields to insert:");
-            id = getInteger("id : ", true);
+            id = ModelInterface.getRandomId("dbo.Task");
             title = getString("title : ", true);
             description = getString("description : ", true);
             due_date = getDate("due_date : ", true);

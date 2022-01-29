@@ -3,6 +3,7 @@ package Views;
 import Entity.Person;
 import Entity.Project;
 import Model.ModelData;
+import Model.ModelInterface;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class ProjectView implements ViewInterface {
         Integer user_id;
         do {
             System.out.println("Fields to insert:");
-            id = getInteger("id : ", true);
+            id = ModelInterface.getRandomId("dbo.Project");
             name = getString("name : ", true);
             user_id = getInteger("user_id : ", true);
 
