@@ -12,12 +12,12 @@ public class Task {
     int section_status;
     int project_id;
     int user_id;
-    int root_task;
+    Integer root_task;
 
     public Task() {
     }
 
-    public Task(int id, String title, String description, Date due_date, String emergency, int section_status, int project_id, int user_id, int root_task) {
+    public Task(int id, String title, String description, Date due_date, String emergency, int section_status, int project_id, int user_id, Integer root_task) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -93,11 +93,11 @@ public class Task {
         this.user_id = user_id;
     }
 
-    public int getRoot_task() {
+    public Integer getRoot_task() {
         return root_task;
     }
 
-    public void setRoot_task(int root_task) {
+    public void setRoot_task(Integer root_task) {
         this.root_task = root_task;
     }
 

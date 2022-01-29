@@ -155,11 +155,11 @@ public class TaskView implements ViewInterface {
 
             System.out.println();
 
-            if (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null && root_task != null) {
+            if (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null) {
                 rows.add(new Task(id, title, description, due_date, emergency, section_status, project_id, user_id, root_task));
             }
         }
-        while (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null && root_task != null);
+        while (title != null && description != null && due_date != null && emergency != null && section_status != null && project_id != null && user_id != null );
 
         parameters.put("rows", rows);
 

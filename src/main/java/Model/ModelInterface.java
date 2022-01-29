@@ -84,6 +84,13 @@ public interface ModelInterface {
 
                 return new ModelData(viewData.functionName, recordCount);
             }
+            case "selectr": {
+                Map<String, Object> whereParameters = (Map<String, Object>) (viewData.viewParameters.get("whereParameters"));
+
+                ResultSet resultSet = select(whereParameters);
+
+                return new ModelData(viewData.functionName, resultSet);
+            }
         }
 
         return new ModelData();

@@ -82,6 +82,7 @@ public class MainMenuView implements ViewInterface {
         }
 
         return new ViewData(getFunctionName(temp), operationName, new HashMap<>());
+                            //person,    select
     }
 
     @Override

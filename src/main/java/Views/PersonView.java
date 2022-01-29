@@ -16,14 +16,10 @@ public class PersonView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
-        System.out.println(modelData);
-
         switch (operationName) {
             case "select":
-                System.out.println(modelData);
                 return selectOperation(modelData);
             case "selectr":
-                System.out.println(modelData);
                 return selectOperationNew(modelData);
             case "insert":
                 return insertOperation(modelData);
@@ -47,12 +43,7 @@ public class PersonView implements ViewInterface {
     ViewData selectOperation(ModelData modelData) throws Exception {
         ResultSet resultSet = modelData.resultSet;
 
-        System.out.println(resultSet);
 
-        if (!resultSet.isBeforeFirst() ) {
-            System.out.println("Wrong email or password!");
-            return new ViewData("Register", "");
-        }
         if (resultSet != null) {
             while (resultSet.next()) {
                 // Retrieve by column name
@@ -72,47 +63,19 @@ public class PersonView implements ViewInterface {
                 System.out.print(user_profile);
                 System.out.println();
 
-                System.out.println();
-                System.out.println("NOTIFICATIONS");
-                System.out.println();
-
-                Connection dbConn = null;
-                Statement stmt = null; // Creates and Runs SQL queries.
-                ResultSet rs = null;
-
-                dbConn = DatabaseUtilities.getConnection();
-
-                // Execute sql and return data result.
-                String sqlQuery = "SELECT * FROM dbo.AssignedTask WHERE destination_user =" + id;
-                stmt = dbConn.createStatement();
-                rs = stmt.executeQuery(sqlQuery);
-
-                // Loop the data of the corresponding table result and display the data.
-                int task_counter = 0;
-                while (rs.next()) {
-                    int sourceUser = rs.getInt("source_user");
-                    int destinationUser = rs.getInt("destination_user");
-                    int task_id = rs.getInt("task_id");
-                    Date assigned_date = rs.getDate("assigned_date");
-                    task_counter++;
-                    //System.out.println(sourceUser + " " + destinationUser + " " + task_id + " " + assigned_date);
-                    System.out.println("TaskId: " + task_id + " AssignedDate: " + assigned_date);
-                }
-                System.out.println("\nTotal Task: " + task_counter);
 
             }
             resultSet.close();
-            return new ViewData("MainMenu", "");
+
         }
-        return null;
+        return new ViewData("MainMenu", "");
     }
 
     ViewData selectOperationNew(ModelData modelData) throws Exception {
         ResultSet resultSet = modelData.resultSet;
 
-        System.out.println(resultSet);
 
-        if (!resultSet.isBeforeFirst() ) {
+        if (!resultSet.isBeforeFirst()) {
             System.out.println("Wrong email or password!");
             return new ViewData("Register", "");
         }
