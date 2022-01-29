@@ -28,7 +28,7 @@ public class RegisterView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
 
-        String email = getString("email: ", false);
+        String email = getEmail("email: ", false);
         String password = getString("password: ", false);
 
         Map<String, Object> whereParameters = new HashMap<>();

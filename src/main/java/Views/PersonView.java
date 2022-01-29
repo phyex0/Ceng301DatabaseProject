@@ -122,7 +122,7 @@ public class PersonView implements ViewInterface {
         Integer id = getInteger("id", true);
         String first_name = getString("first_name : ", true);
         String last_name = getString("last_name", true);
-        String email = getString("email", true);
+        String email = getEmail("email", true);
         String password = getString("password", true);
         String user_profile = getString("user_profile", true);
 
@@ -158,7 +158,7 @@ public class PersonView implements ViewInterface {
             id = ModelInterface.getRandomId("dbo.Person");
             first_name = getString("first_name : ", true);
             last_name = getString("last_name : ", true);
-            email = getString("email : ", true);
+            email = getEmail("email : ", true);
             password = getString("password : ", true);
             user_profile = getString("user_profile : ", true);
 
@@ -183,7 +183,7 @@ public class PersonView implements ViewInterface {
         int id = getInteger("id", true);
         String first_name = getString("first_name : ", true);
         String last_name = getString("last_name : ", true);
-        String email = getString("email : ", true);
+        String email = getEmail("email : ", true);
         String password = getString("password : ", true);
         String user_profile = getString("user_profile : ", true);
 

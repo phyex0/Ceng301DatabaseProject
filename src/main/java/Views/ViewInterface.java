@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public interface ViewInterface {
     public static final Scanner scanner = new Scanner(System.in);
@@ -120,6 +121,24 @@ public interface ViewInterface {
 
         return inputValue;
     }
+
+    public default String getEmail(String prompt, boolean allowNulls) throws ParseException {
+        String inputValue;
+        do {
+            System.out.print(prompt);
+            inputValue = scanner.nextLine();
+
+            if (allowNulls && inputValue.trim().equals(""))
+                return null;
+
+            if ((!Pattern.matches("^\\w+[@]+\\w+[.]+com$", inputValue)))
+                inputValue = null;
+        }
+        while (inputValue == null);
+
+        return inputValue;
+    }
+
 
     abstract ViewData create(ModelData modelData, String functionName, String operationName) throws Exception;
 
