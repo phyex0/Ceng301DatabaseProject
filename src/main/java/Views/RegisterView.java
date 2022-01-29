@@ -43,7 +43,7 @@ public class RegisterView implements ViewInterface {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
-        return new ViewData("Person", "select", parameters);
+        return new ViewData("Person", "selectr", parameters);
     }
 
 

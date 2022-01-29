@@ -16,9 +16,15 @@ public class PersonView implements ViewInterface {
     @Override
     public ViewData create(ModelData modelData, String functionName, String operationName) throws Exception {
 
+        System.out.println(modelData);
+
         switch (operationName) {
             case "select":
+                System.out.println(modelData);
                 return selectOperation(modelData);
+            case "selectr":
+                System.out.println(modelData);
+                return selectOperationNew(modelData);
             case "insert":
                 return insertOperation(modelData);
             case "update":
@@ -40,6 +46,71 @@ public class PersonView implements ViewInterface {
 
     ViewData selectOperation(ModelData modelData) throws Exception {
         ResultSet resultSet = modelData.resultSet;
+
+        System.out.println(resultSet);
+
+        if (!resultSet.isBeforeFirst() ) {
+            System.out.println("Wrong email or password!");
+            return new ViewData("Register", "");
+        }
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                // Retrieve by column name
+                int id = resultSet.getInt("id");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String user_profile = resultSet.getString("user_profile");
+
+                // Display values
+                System.out.print(id + "\t");
+                System.out.print(first_name + "\t");
+                System.out.print(last_name + "\t");
+                System.out.print(email + "\t");
+                System.out.print(password + "\t");
+                System.out.print(user_profile);
+                System.out.println();
+
+                System.out.println();
+                System.out.println("NOTIFICATIONS");
+                System.out.println();
+
+                Connection dbConn = null;
+                Statement stmt = null; // Creates and Runs SQL queries.
+                ResultSet rs = null;
+
+                dbConn = DatabaseUtilities.getConnection();
+
+                // Execute sql and return data result.
+                String sqlQuery = "SELECT * FROM dbo.AssignedTask WHERE destination_user =" + id;
+                stmt = dbConn.createStatement();
+                rs = stmt.executeQuery(sqlQuery);
+
+                // Loop the data of the corresponding table result and display the data.
+                int task_counter = 0;
+                while (rs.next()) {
+                    int sourceUser = rs.getInt("source_user");
+                    int destinationUser = rs.getInt("destination_user");
+                    int task_id = rs.getInt("task_id");
+                    Date assigned_date = rs.getDate("assigned_date");
+                    task_counter++;
+                    //System.out.println(sourceUser + " " + destinationUser + " " + task_id + " " + assigned_date);
+                    System.out.println("TaskId: " + task_id + " AssignedDate: " + assigned_date);
+                }
+                System.out.println("\nTotal Task: " + task_counter);
+
+            }
+            resultSet.close();
+            return new ViewData("MainMenu", "");
+        }
+        return null;
+    }
+
+    ViewData selectOperationNew(ModelData modelData) throws Exception {
+        ResultSet resultSet = modelData.resultSet;
+
+        System.out.println(resultSet);
 
         if (!resultSet.isBeforeFirst() ) {
             System.out.println("Wrong email or password!");
