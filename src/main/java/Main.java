@@ -1,4 +1,5 @@
 import Controllers.Controller;
+import Entity.Person;
 import Model.*;
 import Utility.DatabaseUtilities;
 import Views.*;
@@ -7,13 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+
+
     public static void main(String[] args) throws Exception {
         connectToDatabase();
 
         // Model View Controller (MVC)
         // Router knows all the controllers
         Map<String, Controller> router = new HashMap<>();
-
         router.put("Register", new Controller(new RegisterView(), new RegisterModel()));
         router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
         router.put("Person", new Controller(new PersonView(), new PersonModel()));

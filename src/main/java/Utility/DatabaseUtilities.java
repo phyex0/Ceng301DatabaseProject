@@ -1,5 +1,7 @@
 package Utility;
 
+import Entity.Person;
+
 import java.sql.*;
 import java.util.*;
 
@@ -11,6 +13,8 @@ public class DatabaseUtilities {
     public static String databaseName;
     public static String userName;
     public static String password;
+
+    public static Person person;
 
     private DatabaseUtilities() {
 

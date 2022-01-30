@@ -5,6 +5,7 @@ import Model.ModelData;
 import Model.ModelInterface;
 import Utility.DatabaseUtilities;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,6 +89,8 @@ public class PersonView implements ViewInterface {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 String user_profile = resultSet.getString("user_profile");
+                DatabaseUtilities.person = new Person(id,first_name,last_name,email,password,user_profile);
+
 
                 // Display values
                 System.out.print(id + "\t");
@@ -105,6 +108,8 @@ public class PersonView implements ViewInterface {
                 Connection dbConn = null;
                 Statement stmt = null; // Creates and Runs SQL queries.
                 ResultSet rs = null;
+
+
 
                 dbConn = DatabaseUtilities.getConnection();
 

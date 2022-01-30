@@ -118,6 +118,9 @@ public interface ViewInterface {
             if (!allowNulls && inputValue.trim().equals("")) {
                 inputValue = null;
             }
+
+            if (prompt.contains("user_profile") && !(inputValue.equals("Manager") || inputValue.equals("Employee") || inputValue.equals("")))
+                inputValue = null;
         }
         while (inputValue == null);
 
