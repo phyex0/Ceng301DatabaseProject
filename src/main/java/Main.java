@@ -8,7 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-
+    /*
+    *Halit Burak Yeşildal 18050111043
+    *Mertcan Köse  18050111061
+    *
+    */
 
     public static void main(String[] args) throws Exception {
         connectToDatabase();
