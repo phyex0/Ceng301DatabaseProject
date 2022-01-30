@@ -4,6 +4,7 @@ import Entity.Person;
 import Entity.Project;
 import Model.ModelData;
 import Model.ModelInterface;
+import Utility.DatabaseUtilities;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -102,6 +103,14 @@ public class ProjectView implements ViewInterface {
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
+
+        if(DatabaseUtilities.person.getUser_profile().equals("Employee")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
+
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("fieldNames", "id, name, user_id");
 
@@ -133,6 +142,12 @@ public class ProjectView implements ViewInterface {
 
 
     ViewData updateGUI(ModelData modelData) throws Exception {
+
+        if(DatabaseUtilities.person.getUser_profile().equals("Employee")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
         System.out.println("Fields to update:");
 
 
@@ -155,6 +170,12 @@ public class ProjectView implements ViewInterface {
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
+
+        if(DatabaseUtilities.person.getUser_profile().equals("Employee")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 

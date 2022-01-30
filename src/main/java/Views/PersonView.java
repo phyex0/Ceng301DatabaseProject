@@ -177,6 +177,7 @@ public class PersonView implements ViewInterface {
     }
 
     ViewData selectGUI(ModelData modelData) throws Exception {
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 
@@ -185,6 +186,12 @@ public class PersonView implements ViewInterface {
 
 
     ViewData insertGUI(ModelData modelData) throws Exception {
+
+        if(!DatabaseUtilities.person.getUser_profile().equals("admin")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("fieldNames", "id, first_name, last_name, email, password, user_profile");
 
@@ -217,6 +224,12 @@ public class PersonView implements ViewInterface {
 
 
     ViewData updateGUI(ModelData modelData) throws Exception {
+
+        if(!DatabaseUtilities.person.getUser_profile().equals("admin")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
         System.out.println("Fields to update:");
 
         int id = getInteger("id", true);
@@ -245,6 +258,12 @@ public class PersonView implements ViewInterface {
     }
 
     ViewData deleteGUI(ModelData modelData) throws Exception {
+
+        if(!DatabaseUtilities.person.getUser_profile().equals("admin")){
+            System.out.println("Unprivileged operation!\nReturning main menu!");
+            return new ViewData("MainMenu","");
+        }
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("whereParameters", getWhereParameters());
 

@@ -132,7 +132,7 @@ public class CommentView implements ViewInterface {
             user_id = getInteger("user_id : ", true);
             comment = getString("comment : ", true);
             date = getDate("date : ", true);
-
+            // get the current date
 
             System.out.println();
 
