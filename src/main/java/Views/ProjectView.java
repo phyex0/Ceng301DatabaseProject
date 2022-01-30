@@ -43,6 +43,7 @@ public class ProjectView implements ViewInterface {
         ResultSet resultSet = modelData.resultSet;
 
         if (resultSet != null) {
+            System.out.println("Id\tProjectName\tUserId");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
@@ -82,9 +83,9 @@ public class ProjectView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
-        Integer id = getInteger("id", true);
+        Integer id = getInteger("id : ", true);
         String name = getString("name : ", true);
-        Integer user_id = getInteger("id", true);
+        Integer user_id = getInteger("id : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -151,7 +152,7 @@ public class ProjectView implements ViewInterface {
         System.out.println("Fields to update:");
 
 
-        int id = getInteger("id", false);
+        int id = getInteger("id : ", false);
         String name = getString("name : ", false);
         Integer user_id = getInteger("user_id : ", false);
 

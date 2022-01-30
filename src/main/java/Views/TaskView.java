@@ -44,6 +44,7 @@ public class TaskView implements ViewInterface {
         ResultSet resultSet = modelData.resultSet;
 
         if (resultSet != null) {
+            System.out.println("Id\tTitle\tDescription\tDueDate\tEmergency\tSectionStatus\tProjectId\tUserId");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
@@ -99,9 +100,9 @@ public class TaskView implements ViewInterface {
         String title = getString("title : ", true);
         String description = getString("description : ", true);
         String due_date = getDate("due_date : ", true);
-        String emergency = getString("emergency", true);
-        Integer section_status = getInteger("section_status", true);
-        Integer project_id = getInteger("project_id", true);
+        String emergency = getString("emergency : ", true);
+        Integer section_status = getInteger("section_status : ", true);
+        Integer project_id = getInteger("project_id : ", true);
         Integer user_id = getInteger("user_id : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
@@ -166,7 +167,7 @@ public class TaskView implements ViewInterface {
         System.out.println("Fields to update:");
 
 
-        int id = getInteger("id", false);
+        int id = getInteger("id : ", false);
         String title = getString("title : ", false);
         String description = getString("description : ", false);
         String due_date = getDate("due_date : ", false);

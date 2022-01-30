@@ -45,6 +45,7 @@ public class CommentView implements ViewInterface {
         ResultSet resultSet = modelData.resultSet;
 
         if (resultSet != null) {
+            System.out.println("Id\tTaskId\tUserId\tComment\tDate");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
@@ -93,7 +94,7 @@ public class CommentView implements ViewInterface {
         Integer task_id = getInteger("task_id : ", true);
         Integer user_id = getInteger("user_id : ", true);
         String comment = getString("comment : ", true);
-        String date = getDate("date", true);
+        String date = getDate("date : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -152,7 +153,7 @@ public class CommentView implements ViewInterface {
         System.out.println("Fields to update:");
 
 
-        int id = getInteger("id", false);
+        int id = getInteger("id : ", false);
         Integer task_id = getInteger("task_id : ", false);
         Integer user_id = getInteger("user_id : ", false);
         String comment = getString("comment : ", false);

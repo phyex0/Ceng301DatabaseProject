@@ -46,6 +46,7 @@ public class PersonView implements ViewInterface {
 
 
         if (resultSet != null) {
+            System.out.println("Id\tFirstName\tLastName\tEmail\tPassword\tUserProfile");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
@@ -80,7 +81,9 @@ public class PersonView implements ViewInterface {
             System.out.println("Wrong email or password!");
             return new ViewData("Register", "");
         }
+
         if (resultSet != null) {
+            System.out.println("Id\tFirstName\tLastName\tEmail\tPassword\tUserProfile");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
@@ -108,7 +111,6 @@ public class PersonView implements ViewInterface {
                 Connection dbConn = null;
                 Statement stmt = null; // Creates and Runs SQL queries.
                 ResultSet rs = null;
-
 
 
                 dbConn = DatabaseUtilities.getConnection();
@@ -158,12 +160,12 @@ public class PersonView implements ViewInterface {
 
     Map<String, Object> getWhereParameters() throws Exception {
         System.out.println("Filter conditions:");
-        Integer id = getInteger("id", true);
+        Integer id = getInteger("id : ", true);
         String first_name = getString("first_name : ", true);
-        String last_name = getString("last_name", true);
-        String email = getEmail("email", true);
-        String password = getString("password", true);
-        String user_profile = getString("user_profile", true);
+        String last_name = getString("last_name : ", true);
+        String email = getEmail("email : ", true);
+        String password = getString("password : ", true);
+        String user_profile = getString("user_profile : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (id != null) whereParameters.put("id", id);
@@ -232,7 +234,7 @@ public class PersonView implements ViewInterface {
 
         System.out.println("Fields to update:");
 
-        int id = getInteger("id", true);
+        int id = getInteger("id : ", true);
         String first_name = getString("first_name : ", true);
         String last_name = getString("last_name : ", true);
         String email = getEmail("email : ", true);

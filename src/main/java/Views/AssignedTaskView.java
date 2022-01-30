@@ -45,6 +45,7 @@ public class AssignedTaskView implements ViewInterface {
         ResultSet resultSet = modelData.resultSet;
 
         if (resultSet != null) {
+            System.out.println("Id\tSourceUser\tDestinationUser\tTaskId\tDate");
             while (resultSet.next()) {
                 // Retrieve by column name
                 int id = resultSet.getInt("id");
